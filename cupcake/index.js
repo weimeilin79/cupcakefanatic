@@ -7,12 +7,12 @@ const app = express();
 
 const redpanda = new Kafka({
   clientId: 'store-app',
-  brokers: ["BROKER"],
+  brokers: [process.env.SERVERLESSBROKER],
   ssl: {},
   sasl: {
       mechanism: "scram-sha-256",
-      username: "USER",
-      password: "PWD"
+      username: process.env.RPUSER,
+      password: process.env.RPPWD
   }
 })
 
