@@ -21,15 +21,16 @@ fs.createReadStream('store_nyc.csv')
     console.log('CSV file successfully processed');
   });
 
-const redpanda = new Kafka({
-  brokers: ["co258dppom78tp54qp20.any.us-east-1.mpx.prd.cloud.redpanda.com:9092"],
-  ssl: {},
-  sasl: {
-    mechanism: "scram-sha-256",
-    username: "admin",
-    password: "1234qwer"
-  }
-})
+  const redpanda = new Kafka({
+    clientId: 'store-app',
+    brokers: [process.env.SERVERLESSBROKER],
+    ssl: {},
+    sasl: {
+        mechanism: "scram-sha-256",
+        username: process.env.RPUSER,
+        password: process.env.RPPWD
+    }
+  })
 
 const consumer = redpanda.consumer({ groupId: 'yogurt-group' })
 
@@ -65,3 +66,4 @@ const run = async () => {
 
 run().catch(console.error)
 
+module.exports = { inventory };

@@ -1,7 +1,7 @@
 const express = require('express');
 const {Kafka} = require("kafkajs")
 
-require('./mapview.js');
+let { inventory } = require('./mapview.js');
 
 const app = express();
 
@@ -33,6 +33,11 @@ app.post('/submit', async function(req, res) {
   });
   await producer.disconnect();
 
+  res.json({ status: 'success' });
+});
+
+app.post('/clean-inventory', function(req, res) {
+  inventory = {};
   res.json({ status: 'success' });
 });
 
