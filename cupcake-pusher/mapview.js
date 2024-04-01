@@ -1,14 +1,19 @@
 
 const {Kafka} = require("kafkajs")
-const WebSocket = require('ws');
 const fs = require('fs');
 const csv = require('csv-parser');
-
-
-const wss = new WebSocket.Server({ noServer: true });
+const Pusher = require("pusher");
 
 let inventory = {}; // This object will store our inventory data
 let storeLocations = {}; // This object will store our store locations data
+
+const pusher = new Pusher({
+  appId: "process.env.PUSHER_APP_ID",
+  key: "PUHSER_APP_KEY",
+  secret: "PUHSER_APP_SECRET",
+  cluster: "PUHSER_APP_CLUSTER",
+  useTLS: true
+});
 
 
 // Read the CSV file and store the data in storeLocations
@@ -31,11 +36,7 @@ fs.createReadStream('store_nyc.csv')
         password: process.env.RPPWD
     }
   })
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> fcd5e34 (update env)
 const consumer = redpanda.consumer({ groupId: 'cupcake-group' })
 
 const run = async () => {
@@ -57,12 +58,8 @@ const run = async () => {
   
         console.log('Updated inventory:', inventory[messageData.store]);
   
-        // Broadcast updated inventory to all connected clients
-        wss.clients.forEach(function each(client) {
-          if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify(inventory));
-          }
-        });
+        pusher.trigger("my-channel", "cupcake-inv", JSON.stringify(inventory));
+       
       },
     })
   }
