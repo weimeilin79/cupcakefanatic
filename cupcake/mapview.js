@@ -5,7 +5,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ noServer: true });
 
 let inventory = {}; // This object will store our inventory data
 let storeLocations = {}; // This object will store our store locations data
