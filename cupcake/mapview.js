@@ -32,7 +32,7 @@ fs.createReadStream('store_nyc.csv')
     }
   })
 
-const consumer = redpanda.consumer({ groupId: 'yogurt-group' })
+const consumer = redpanda.consumer({ groupId: 'cupcake-group' })
 
 const run = async () => {
     await consumer.connect()
