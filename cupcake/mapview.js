@@ -31,11 +31,6 @@ fs.createReadStream('store_nyc.csv')
         password: process.env.RPPWD
     }
   })
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> fcd5e34 (update env)
 const consumer = redpanda.consumer({ groupId: 'cupcake-group' })
 
 const run = async () => {
