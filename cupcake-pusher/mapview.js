@@ -9,11 +9,12 @@ let storeLocations = {}; // This object will store our store locations data
 
 const pusher = new Pusher({
   appId: "process.env.PUSHER_APP_ID",
-  key: "PUHSER_APP_KEY",
-  secret: "PUHSER_APP_SECRET",
-  cluster: "PUHSER_APP_CLUSTER",
+  key: "process.env.PUHSER_APP_KEY",
+  secret: "process.env.PUHSER_APP_SECRET",
+  cluster: "process.env.PUHSER_APP_CLUSTER",
   useTLS: true
 });
+
 
 
 // Read the CSV file and store the data in storeLocations
@@ -58,7 +59,12 @@ const run = async () => {
   
         console.log('Updated inventory:', inventory[messageData.store]);
   
-        pusher.trigger("my-channel", "cupcake-inv", JSON.stringify(inventory));
+        try {
+          pusher.trigger("my-channel", "cupcake-inv", JSON.stringify(inventory));
+        } catch (error) {
+          console.error('Error:', error);
+        }
+        
        
       },
     })
