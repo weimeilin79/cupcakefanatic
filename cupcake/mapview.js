@@ -5,7 +5,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 
 
-const wss = new WebSocket.Server({ noServer: true });
+const wss = new WebSocket.Server({ port: 8080 });
 
 let inventory = {}; // This object will store our inventory data
 let storeLocations = {}; // This object will store our store locations data
@@ -31,6 +31,7 @@ fs.createReadStream('store_nyc.csv')
         password: process.env.RPPWD
     }
   })
+  
 const consumer = redpanda.consumer({ groupId: 'cupcake-group' })
 
 const run = async () => {
