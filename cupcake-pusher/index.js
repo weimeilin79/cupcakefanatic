@@ -42,15 +42,7 @@ app.post('/clean-inventory', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  const filePath = path.join(__dirname, 'index.html');
-  let htmlContent = fs.readFileSync(filePath, 'utf8');
-
-  const pusherKey = process.env.PUHSER_APP_KEY || 'xxx';
-  htmlContent = htmlContent.replace('%%PUHSER_APP_KEY%%', pusherKey);
-  const puserCluster = process.env.PUHSER_APP_CLUSTER || 'us2';
-  htmlContent = htmlContent.replace('%%PUHSER_APP_CLUSTER%%', puserCluster);
-
-  res.send(htmlContent);
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/input', function(req, res) {
