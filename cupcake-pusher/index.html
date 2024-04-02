@@ -121,8 +121,8 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
-        var pusher = new Pusher('%%PUHSER_APP_KEY%%', {
-        cluster: '%%PUHSER_APP_CLUSTER%%'
+        var pusher = new Pusher('44cc7533426f36966042', {
+        cluster: 'us2'
         });
         var channel = pusher.subscribe('my-channel');
 
