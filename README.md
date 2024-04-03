@@ -4,20 +4,20 @@ This real-time, interactive application is designed to keep fans informed about 
 
 ## Features
 
-Real-time Cupcake Stock Updates: Utilizes Redpanda Serverless to stream data about cupcake availability.
-Interactive Map: Leverages LeafletJS for displaying dynamic updates of cupcake stocks across different locations.
-WebSocket Updates: Incorporates Pusher Channel/Websocket for real-time, serverless data push to the app.
-Simplified Deployment: Hosted on Vercel or you can run locally for easy deployment.
+- __Real-time Cupcake Stock Updates__: Utilizes Redpanda Serverless to stream data about cupcake availability.
+- __Interactive Map__: Leverages LeafletJS for displaying dynamic updates of cupcake stocks across different locations.
+- __WebSocket Updates__: Incorporates Pusher Channel/Websocket for real-time, serverless data push to the app.
+- __Simplified Deployment__: Hosted on Vercel or you can run locally for easy deployment.
 
 ![App Screenshot](img/theapp.png)
 
 ## Technology Stack
 
-**Redpanda Serverless**: For creating and managing data streams with ease and efficiency.
-**NodeJs**: The backend framework used for server-side logic.
-**LeafletJS**: A JavaScript library for mobile-friendly interactive maps.
-**Vercel**: For hosting the NodeJS application and providing seamless deployment and GitHub integration.
-**Pusher Channel**: For WebSocket service that enables real-time data push to the application.
+- **Redpanda Serverless**: For creating and managing data streams with ease and efficiency.
+- **NodeJs**: The backend framework used for server-side logic.
+- **LeafletJS**: A JavaScript library for mobile-friendly interactive maps.
+- **Vercel**: For hosting the NodeJS application and providing seamless deployment and GitHub integration.
+- **Pusher Channel**: For WebSocket service that enables real-time data push to the application.
 
 ## Applicaticon Structure and Files
 
