@@ -109,6 +109,7 @@ RPPWD=<USER_YOU_CREATED_IN_RP_PWD>
 1. Navigate to https://<YOUR_APP>/input (use http://localhost:3000/input if you're running the app locally).
 2. Use the interface to submit new stock updates for stores. (Note: The store ID is only valid for values from 1 to 90.)
 3. You can reset the map by clicking on the `Clean Inventory` button. Be sure to refresh the map's webpage afterward.
+   
 ![Pusher step](img/input.png)
 
 ## Video 
