@@ -106,3 +106,4 @@ RPPWD=<USER_YOU_CREATED_IN_RP_PWD>
 4. Start the simulator by running `python simulator.js`
 
 ## Video 
+[![Video](https://img.youtube.com/vi/MKLOcFopKXM/0.jpg)](https://www.youtube.com/watch?v=MKLOcFopKXM)
