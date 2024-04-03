@@ -105,5 +105,11 @@ RPPWD=<USER_YOU_CREATED_IN_RP_PWD>
 3. Install the Python dependencies listed in the requirements.txt file by running `pip install -r requirements.txt`.
 4. Start the simulator by running `python simulator.js`
 
+## Creating records in the app (Alternative to Using the Simulator)
+1. Navigate to https://<YOUR_APP>/input (use http://localhost:3000/input if you're running the app locally).
+2. Use the interface to submit new stock updates for stores. (Note: The store ID is only valid for values from 1 to 90.)
+3. You can reset the map by clicking on the `Clean Inventory` button. Be sure to refresh the map's webpage afterward.
+![Pusher step](img/input.png)
+
 ## Video 
 [![Video](https://img.youtube.com/vi/MKLOcFopKXM/0.jpg)](https://www.youtube.com/watch?v=MKLOcFopKXM)
