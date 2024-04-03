@@ -9,6 +9,8 @@ Interactive Map: Leverages LeafletJS for displaying dynamic updates of cupcake s
 WebSocket Updates: Incorporates Pusher Channel/Websocket for real-time, serverless data push to the app.
 Simplified Deployment: Hosted on Vercel or you can run locally for easy deployment.
 
+![App Screenshot](img/theapp.png)
+
 ## Technology Stack
 
 **Redpanda Serverless**: For creating and managing data streams with ease and efficiency.
@@ -17,18 +19,20 @@ Simplified Deployment: Hosted on Vercel or you can run locally for easy deployme
 **Vercel**: For hosting the NodeJS application and providing seamless deployment and GitHub integration.
 **Pusher Channel**: For WebSocket service that enables real-time data push to the application.
 
-## Application Structure and Files
+## Applicaticon Structure and Files
 
-`index.js`: Serves as the main server file, setting up the Express server, defining routes 
+![App structure Screenshot](img/cupcake-explained.png)
+
+- `index.js`: Serves as the main server file, setting up the Express server, defining routes 
     - submitting inventory updates _/submit_ and interacts with Kafka to produce messages whenever inventory data is submitted
     - clearing inventory _/clean-inventory_ 
     - serving the main app _/_ 
     - input form _/input_
-`mapview.js`: Handles the consuming from Redpanda, updating the inventory list(memorymap ), and then using Pusher to push these updates to the front end (optionally go to `cupcake` folder to push to websocket service ). It also locads the store IDs to their locations, ensuring that inventory updates can be accurately represented on a map.
-`store_nyc.csv`: List of cupcake partner stores with geographical locations and names in NYC
-`index.html`: Front end of the application, displaying the real-time map and inventory updates to users.
-`input.html & input.js`: Form for submitting cupcake inventory updates.
-`submit.js`: Handle the submission of inventory updates from the client side, posting data to the server.
+- `mapview.js`: Handles the consuming from Redpanda, updating the inventory list(memorymap ), and then using Pusher to push these updates to the front end (optionally go to `cupcake` folder to push to websocket service ). It also locads the store IDs to their locations, ensuring that inventory updates can be accurately represented on a map.
+- `store_nyc.csv`: List of cupcake partner stores with geographical locations and names in NYC
+- `index.html`: Front end of the application, displaying the real-time map and inventory updates to users.
+- `input.html & input.js`: Form for submitting cupcake inventory updates.
+- `submit.js`: Handle the submission of inventory updates from the client side, posting data to the server.
  
 
 ## Getting Started
@@ -39,7 +43,7 @@ Simplified Deployment: Hosted on Vercel or you can run locally for easy deployme
 2. Click on the "Create Cluster" button and select a region close to your workload.
 3. Create a user by going to *Security* on the left menu, and set permissions (at least enable read and write to topic name `inv-count`)
 4. Create a topic called  `inv-count` for cupcake stock updates
-
+![Redpanda Serverless steps](img/serverless.png)
 
 ### Initial Setup
 You can choose either the `cupcake` or `cupcake-pusher` directory based on your real-time update preference and navigate into the chosen folder.
@@ -72,6 +76,8 @@ export key = "<YOUR_PUSHER_KEY>"
 export secret = "<YOUR_PUSHER_SECRET>"
 export cluster = "<YOUR_PUSHER_CLUSTER>"
 ```
+![Pusher step](img/pusher.png)
+
 1. In `index.html` replace the PUSHER_APP_ID and PUSHER_CLUSTER with your <YOUR_PUSHER_APP_ID> and <YOUR_PUSHER_CLUSTER>
 2. Import the project, select `cupcakefanatic` as your repo and choose `cupcake-pusher` as the root directory.
 3. Push the code to your Github repository.
@@ -81,15 +87,16 @@ export cluster = "<YOUR_PUSHER_CLUSTER>"
 9. In *Environment Variables* enter the following setting with your own configuration
 ```
 PUSHER_APP_ID=<YOUR_PUSHER_APP_ID>
-PUHSER_APP_KEY=<>
-PUHSER_APP_SECRET=<>
-UHSER_APP_CLUSTER=us2
+PUHSER_APP_KEY=<YOUR_PUSHER_KEY>
+PUHSER_APP_SECRET=<YOUR_PUSHER_SECRET>
+UHSER_APP_CLUSTER=<YOUR_PUSHER_CLUSTER>
 SERVERLESSBROKER=<YOUR_SERVERLESS_BOOSTRAP_URL>
 RPUSER=<USER_YOU_CREATED_IN_RP_SERVERLESS>
 RPPWD=<USER_YOU_CREATED_IN_RP_PWD>
 
 ```
-10. Click deploy to start.
+![Pusher step](img/vercel.png)
+10.  Click deploy to start.
 
 
 ## Setting Up and Start the Simulator
