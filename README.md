@@ -1,3 +1,4 @@
+this branch is used to deploy example on vercel
 # Overview
 
 This real-time, interactive application is designed to keep fans informed about the current stock of cupcakes for a new cupcake business in New York City. Leveraging the power of Redpanda Serverless for data streaming and Vercel for deployment, the app offers instantaneous updates on cupcake availability, enhancing customer engagement and inventory management.
