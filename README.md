@@ -104,3 +104,5 @@ RPPWD=<USER_YOU_CREATED_IN_RP_PWD>
 2. Ensure Python is installed on your system.
 3. Install the Python dependencies listed in the requirements.txt file by running `pip install -r requirements.txt`.
 4. Start the simulator by running `python simulator.js`
+
+## Video 
