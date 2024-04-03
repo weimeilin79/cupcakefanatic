@@ -2,6 +2,7 @@ import pandas as pd
 import random
 import json
 import time
+import os
 from kafka import KafkaProducer
 
 # Load the data
@@ -24,11 +25,11 @@ for _, row in df.iterrows():
 
 # Create a Kafka producer
 producer = KafkaProducer(
-  bootstrap_servers="",
+  bootstrap_servers=os.getenv('SERVERLESSBROKER', 'localhost:9092'),
   security_protocol="SASL_SSL",
   sasl_mechanism="SCRAM-SHA-256",
-  sasl_plain_username="",
-  sasl_plain_password="",
+  sasl_plain_username=os.getenv('RPUSER', 'admin'),
+  sasl_plain_password=os.getenv('RPPWD', 'password'),
   value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
