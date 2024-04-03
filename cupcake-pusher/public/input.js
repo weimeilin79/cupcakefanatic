@@ -5,7 +5,7 @@ document.getElementById('yogurt-form').addEventListener('submit', function(event
     var blueberry = parseInt(document.getElementById('blueberry').value);
     var strawberry = parseInt(document.getElementById('strawberry').value);
 
-    fetch('/submit', {
+    fetch('api/submit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
