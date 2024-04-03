@@ -24,11 +24,11 @@ for _, row in df.iterrows():
 
 # Create a Kafka producer
 producer = KafkaProducer(
-  bootstrap_servers="co5heihkkm0vlrgadjt0.any.us-east-1.mpx.prd.cloud.redpanda.com:9092",
+  bootstrap_servers="",
   security_protocol="SASL_SSL",
   sasl_mechanism="SCRAM-SHA-256",
-  sasl_plain_username="admin",
-  sasl_plain_password="1234qwer",
+  sasl_plain_username="",
+  sasl_plain_password="",
   value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
