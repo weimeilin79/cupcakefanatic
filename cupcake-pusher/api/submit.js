@@ -24,9 +24,14 @@ module.exports = async (req, res) => {
     // Condition to check if store, blueberry, and strawberry are all zero
     if(store === '0' && parseInt(blueberry) === 0 && parseInt(strawberry) === 0)  {
         const inventoryFilePath = path.join(__dirname, '..', 'data', 'inventory.json');
-        console.log(inventoryFilePath);
-        fs.unlinkSync(inventoryFilePath);
-        console.log('inventory.json has been deleted');
+
+        if (fs.existsSync(inventoryFilePath)) {
+            fs.unlinkSync(inventoryFilePath);
+            console.log('File deleted successfully');
+        } else {
+            console.log('File does not exist, no need to delete');
+        }
+       
     }else{
         await producer.connect();
         await producer.send({
