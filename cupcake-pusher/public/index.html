@@ -87,6 +87,8 @@
         </table>
     </div>
     <script>
+        const uniqueChannelId = 'channel_' + Math.random().toString(36).substr(2, 9); // Generate a random channel ID
+        
         var map = L.map('map').setView([40.774389, -73.952049], 12);
         var blueIcon = new L.Icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -121,12 +123,12 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
-        var pusher = new Pusher('8e5088d0ae57252762b8', {
+        var pusher = new Pusher('cadb5342f79a7a0f87f0', {
         cluster: 'us2'
         });
         var channel = pusher.subscribe('my-channel');
 
-        channel.bind('cupcake-inv', function(data) {
+        channel.bind(uniqueChannelId, function(data) {
             //console.log("FROM PUSHER cupcake-->"+JSON.stringify(data));
             var inventory = data;
             tableBody.innerHTML = '';
@@ -137,8 +139,10 @@
 
                 // Check if inventory is zero
                 
-                //console.log("storeData.lat->"+storeData.lat)
-                //console.log("storeData.lng->"+storeData.lng)
+                if(storeData.lat == null || storeData.lng == null) {
+                    console.warn(`Skipping store due to invalid lat/lng: ${storeData.store}`);
+                    continue; 
+                }
                 if (markers[store]) {
                     // Update existing marker
                     markers[store].setLatLng([storeData.lat, storeData.lng])
@@ -180,6 +184,25 @@
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Mapview triggered with ID:', uniqueChannelId);
+            fetch(`/api/mapview?channelId=${encodeURIComponent(uniqueChannelId)}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response from mapview:', data);
+                
+                    const userWantsToReload = confirm("Live session is over. Do you want to reload?");
+                    if (userWantsToReload) {
+                        // Reload the page
+                        window.location.reload();
+                    }
+                
+            })
+            .catch(error => console.error('Error:', error));
+
+        });
     </script>
 </body>
 </html>
