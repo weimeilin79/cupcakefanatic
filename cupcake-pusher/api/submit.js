@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     console.log('Strawberry:', strawberry);
     // Condition to check if store, blueberry, and strawberry are all zero
     if(store === '0' && parseInt(blueberry) === 0 && parseInt(strawberry) === 0)  {
-        const inventoryFilePath = path.join(__dirname, '..', 'tmp', 'inventory.json');
+        const inventoryFilePath = '/tmp/inventory.json'; 
 
         if (fs.existsSync(inventoryFilePath)) {
             fs.writeFile(inventoryFilePath, '')

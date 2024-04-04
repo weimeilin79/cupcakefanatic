@@ -88,7 +88,20 @@ module.exports = async (req, res) => {
         //For Demo purposes only, we will wait for a few seconds before disconnecting
         //Normally, the consumer will run indefinitely, since vercel doesn't allow it, we disconnect after MAX_BLOCK_TIME
         await new Promise(resolve => setTimeout(resolve, MAX_BLOCK_TIME) );
-        await fs.writeFileSync(inventoryFilePath, JSON.stringify(inventory));
+       
+        
+        try {
+          const inventoryFilePath = '/tmp/inventory.json'; 
+          await updateInventoryFile(inventoryFilePath, inventory);
+
+          await fs.mkdir(path.dirname(inventoryFilePath), { recursive: true });
+          await fs.writeFile(inventoryFilePath, JSON.stringify(inventory));
+          console.log('Inventory saved.');
+        } catch (error) {
+            console.error('Error saving inventory:', error);
+        }
+
+
         res.json({ success: true, message: "Inventory processed" }
         );
     } catch (error) {
