@@ -26,7 +26,9 @@ module.exports = async (req, res) => {
         const inventoryFilePath = path.join(__dirname, '..', 'tmp', 'inventory.json');
 
         if (fs.existsSync(inventoryFilePath)) {
-            fs.unlinkSync(inventoryFilePath);
+            fs.writeFile(inventoryFilePath, '')
+            .then(() => console.log('File contents have been cleared.'))
+            .catch((error) => console.error('Error clearing file contents:', error));
             console.log('File deleted successfully');
         } else {
             console.log('File does not exist, no need to delete');
