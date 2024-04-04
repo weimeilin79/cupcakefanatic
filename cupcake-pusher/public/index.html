@@ -189,7 +189,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Mapview triggered with ID:', uniqueChannelId);
             fetch(`/api/mapview?channelId=${encodeURIComponent(uniqueChannelId)}`)
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 504) {
+                    // Detected a timeout, proceed to reload or prompt the user
+                    console.log('Timeout detected, reloading...');
+                    window.location.reload();
+                } else {
+                   
+                    return response.json();
+                }
+            })
             .then(data => {
                 console.log('Response from mapview:', data);
                 
