@@ -88,7 +88,7 @@ module.exports = async (req, res) => {
         //For Demo purposes only, we will wait for a few seconds before disconnecting
         //Normally, the consumer will run indefinitely, since vercel doesn't allow it, we disconnect after MAX_BLOCK_TIME
         await new Promise(resolve => setTimeout(resolve, MAX_BLOCK_TIME) );
-        await fs.writeFile(inventoryFilePath, JSON.stringify(inventory));
+        await fs.writeFileSync(inventoryFilePath, JSON.stringify(inventory));
         res.json({ success: true, message: "Inventory processed" }
         );
     } catch (error) {
