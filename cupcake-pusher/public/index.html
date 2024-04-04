@@ -202,11 +202,8 @@
             .then(data => {
                 console.log('Response from mapview:', data);
                 
-                    const userWantsToReload = confirm("Live session is over. Do you want to reload?");
-                    if (userWantsToReload) {
-                        // Reload the page
-                        window.location.reload();
-                    }
+                    const userWantsToReload = confirm("Live session is over");
+                    
                 
             })
             .catch(error => console.error('Error:', error));
