@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
     });
     
     let inventory = {};
-    const inventoryFilePath = path.join(__dirname, '..', 'data', 'inventory.json');
+    const inventoryFilePath = path.join(__dirname, '..', 'tmp', 'inventory.json');
     try {
       const inventoryData = await fs.promises.readFile(inventoryFilePath, 'utf8');
       inventory = JSON.parse(inventoryData);
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
     });
 
     const consumer = redpanda.consumer({ groupId: 'cupcake_group_'+channelId });
-    const MAX_BLOCK_TIME = 10000;
+    const MAX_BLOCK_TIME = 8000;
 
     try {
         
