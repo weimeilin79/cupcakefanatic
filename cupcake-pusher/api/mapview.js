@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
     });
 
     const consumer = redpanda.consumer({ groupId: 'cupcake_group_'+channelId });
-    const MAX_BLOCK_TIME = 3000;
+    const MAX_BLOCK_TIME = 10000;
 
     try {
         
