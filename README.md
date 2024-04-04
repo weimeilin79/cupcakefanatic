@@ -1,3 +1,4 @@
+this branch is used to deploy example on vercel
 # Overview
 
 This real-time, interactive application is designed to keep fans informed about the current stock of cupcakes for a new cupcake business in New York City. Leveraging the power of Redpanda Serverless for data streaming and Vercel for deployment, the app offers instantaneous updates on cupcake availability, enhancing customer engagement and inventory management.
@@ -23,12 +24,8 @@ This real-time, interactive application is designed to keep fans informed about 
 
 ![App structure Screenshot](img/cupcake-explained.png)
 
-- `index.js`: Serves as the main server file, setting up the Express server, defining routes 
-    - submitting inventory updates _/submit_ and interacts with Kafka to produce messages whenever inventory data is submitted
-    - clearing inventory _/clean-inventory_ 
-    - serving the main app _/_ 
-    - input form _/input_
-- `mapview.js`: Handles the consuming from Redpanda, updating the inventory list(memorymap ), and then using Pusher to push these updates to the front end (optionally go to `cupcake` folder to push to websocket service ). It also locads the store IDs to their locations, ensuring that inventory updates can be accurately represented on a map.
+
+- `mapview.js`: Handles the consuming from Redpanda, updating the inventory list, and then using Pusher to push these updates to the front-end (optionally go to `cupcake` folder to push to websocket service ). Every browser client will have it's own clientID, so each will have it's own dedicated channel. It also loads the store IDs to their locations, ensuring that inventory updates can be accurately represented on a map.
 - `store_nyc.csv`: List of cupcake partner stores with geographical locations and names in NYC
 - `index.html`: Front end of the application, displaying the real-time map and inventory updates to users.
 - `input.html & input.js`: Form for submitting cupcake inventory updates.
